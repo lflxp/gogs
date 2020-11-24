@@ -63,6 +63,7 @@ and it takes care of all the other things for you`,
 // newMacaron initializes Macaron instance.
 func newMacaron() *macaron.Macaron {
 	m := macaron.New()
+	fmt.Println("123")
 	if !conf.Server.DisableRouterLog {
 		m.Use(macaron.Logger())
 	}
