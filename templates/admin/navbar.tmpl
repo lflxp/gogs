@@ -16,6 +16,9 @@
 		<a class="{{if .PageIsAdminAuthentications}}active{{end}} item" href="{{AppSubURL}}/admin/auths">
 			{{.i18n.Tr "admin.authentication"}}
 		</a>
+		<a class="{{if .PageIsToolChains}}active{{end}} item" href="{{AppSubURL}}/admin/toolchains">
+			{{.i18n.Tr "admin.toolchains"}}
+		</a>
 		<a class="{{if .PageIsAdminConfig}}active{{end}} item" href="{{AppSubURL}}/admin/config">
 			{{.i18n.Tr "admin.config"}}
 		</a>

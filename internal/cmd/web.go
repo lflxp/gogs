@@ -268,6 +268,10 @@ func runWeb(c *cli.Context) error {
 				m.Get("", admin.Organizations)
 			})
 
+			m.Group("/toolchains", func() {
+				m.Get("", admin.ToolChains)
+			})
+
 			m.Group("/repos", func() {
 				m.Get("", admin.Repos)
 				m.Post("/delete", admin.DeleteRepo)
