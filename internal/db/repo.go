@@ -159,6 +159,9 @@ type Repository struct {
 	UseCustomAvatar bool
 
 	// Counters
+	NumDevOpses         int `xorm:"NOT NULL DEFAULT 0" gorm:"NOT NULL;DEFAULT:0"`
+	NumClosedDevOpses   int
+	NumOpenDevOpses     int `xorm:"-" gorm:"-" json:"-"`
 	NumWatches          int
 	NumStars            int
 	NumForks            int
@@ -183,6 +186,7 @@ type Repository struct {
 	*Mirror  `xorm:"-" gorm:"-" json:"-"`
 
 	// Advanced settings
+	EnableDevOps          bool `xorm:"NOT NULL DEFAULT true" gorm:"NOT NULL;DEFAULT:TRUE"`
 	EnableWiki            bool `xorm:"NOT NULL DEFAULT true" gorm:"NOT NULL;DEFAULT:TRUE"`
 	AllowPublicWiki       bool
 	EnableExternalWiki    bool
@@ -220,6 +224,8 @@ func (repo *Repository) AfterSet(colName string, _ xorm.Cell) {
 		if len(repo.DefaultBranch) == 0 {
 			repo.DefaultBranch = "master"
 		}
+	case "num_closed_devopses":
+		repo.NumOpenDevOpses = repo.NumDevOpses - repo.NumClosedDevOpses
 	case "num_closed_issues":
 		repo.NumOpenIssues = repo.NumIssues - repo.NumClosedIssues
 	case "num_closed_pulls":

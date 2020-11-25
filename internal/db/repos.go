@@ -74,6 +74,7 @@ type createRepoOpts struct {
 	EnableWiki    bool
 	EnableIssues  bool
 	EnablePulls   bool
+	EnableDevOps  bool
 	Fork          bool
 	ForkID        int64
 }
@@ -105,6 +106,7 @@ func (db *repos) create(ownerID int64, opts createRepoOpts) (*Repository, error)
 		EnableWiki:    opts.EnableWiki,
 		EnableIssues:  opts.EnableIssues,
 		EnablePulls:   opts.EnablePulls,
+		EnableDevOps:  opts.EnableDevOps,
 		IsFork:        opts.Fork,
 		ForkID:        opts.ForkID,
 	}

@@ -1,0 +1,8 @@
+<div class="ui compact small menu">
+	<a class="{{if .PageIsProject}}active{{end}} item" href="{{.RepoLink}}/project">{{.i18n.Tr "repo.project"}}</a>
+	<a class="{{if .PageIsGit}}active{{end}} item" href="{{.RepoLink}}/git">{{.i18n.Tr "repo.git"}}</a>
+	<a class="{{if .PageIsScan}}active{{end}} item" href="{{.RepoLink}}/scan">{{.i18n.Tr "repo.scan"}}</a>
+	<a class="{{if .PageIsTest}}active{{end}} item" href="{{.RepoLink}}/test">{{.i18n.Tr "repo.test"}}</a>
+	<a class="{{if .PageIsDeploy}}active{{end}} item" href="{{.RepoLink}}/deploy">{{.i18n.Tr "repo.deploy"}}</a>
+	<a class="{{if .PageIsPipeline}}active{{end}} item" href="{{.RepoLink}}/pipeline">{{.i18n.Tr "repo.pipeline"}}</a>
+</div>

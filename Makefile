@@ -23,7 +23,7 @@ check: test
 
 dist: release
 
-web: build
+web: generate build
 	./gogs web
 
 build:

@@ -63,7 +63,6 @@ and it takes care of all the other things for you`,
 // newMacaron initializes Macaron instance.
 func newMacaron() *macaron.Macaron {
 	m := macaron.New()
-	fmt.Println("123")
 	if !conf.Server.DisableRouterLog {
 		m.Use(macaron.Logger())
 	}
@@ -465,6 +464,13 @@ func runWeb(c *cli.Context) error {
 
 		m.Post("/:username/:reponame/action/:action", reqSignIn, context.RepoAssignment(), repo.Action)
 		m.Group("/:username/:reponame", func() {
+			m.Get("/devops", repo.RetrieveLabels, repo.DevOps)
+			m.Get("/project", repo.Project)
+			m.Get("/git", repo.Git)
+			m.Get("/scan", repo.Scan)
+			m.Get("/test", repo.Test)
+			m.Get("/deploy", repo.Deploy)
+			m.Get("/pipeline", repo.Pipeline)
 			m.Get("/issues", repo.RetrieveLabels, repo.Issues)
 			m.Get("/issues/:index", repo.ViewIssue)
 			m.Get("/labels/", repo.RetrieveLabels, repo.Labels)
@@ -529,6 +535,14 @@ func runWeb(c *cli.Context) error {
 			}, repo.MustBeNotBare, reqRepoWriter, func(c *context.Context) {
 				c.Data["PageIsViewFiles"] = true
 			})
+
+			m.Group("/pipeline", func() {
+				m.Get("/new", repo.NewPipeline)
+			}, reqRepoWriter, context.RepoRef())
+
+			m.Group("/project", func() {
+				m.Get("/new", repo.NewProject)
+			}, reqRepoWriter, context.RepoRef())
 
 			// FIXME: Should use c.Repo.PullRequest to unify template, currently we have inconsistent URL
 			// for PR in same repository. After select branch on the page, the URL contains redundant head user name.
