@@ -270,7 +270,7 @@ func runWeb(c *cli.Context) error {
 
 			m.Group("/toolchains", func() {
 				m.Get("", admin.ToolChains)
-				m.Combo("/new").Get(admin.NewUser).Post(bindIgnErr(form.AdminCrateUser{}), admin.NewUserPost)
+				m.Combo("/new").Get(admin.NewToolChains).Post(bindIgnErr(form.AdminCrateUser{}), admin.NewToolChainsPost)
 			})
 
 			m.Group("/repos", func() {

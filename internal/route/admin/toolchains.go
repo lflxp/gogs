@@ -107,10 +107,27 @@ func ToolChains(c *context.Context) {
 	c.Success(TOOLCHAIN)
 }
 
+func NewToolChains(c *context.Context) {
+	c.Data["Title"] = c.Tr("admin.users.new_account")
+	c.Data["PageIsToolChains"] = true
+	c.Data["PageIsAdminUsers"] = true
+
+	c.Data["login_type"] = "0-0"
+
+	sources, err := db.LoginSources.List(db.ListLoginSourceOpts{})
+	if err != nil {
+		c.Error(err, "list login sources")
+		return
+	}
+	c.Data["Sources"] = sources
+
+	c.Data["CanSendEmail"] = conf.Email.Enabled
+	c.Success(TOOLCHAIN_NEW)
+}
+
 func NewToolChainsPost(c *context.Context, f form.AdminCrateUser) {
 	c.Data["Title"] = c.Tr("admin.users.new_account")
-	c.Data["PageIsAdmin"] = true
-	c.Data["PageIsAdminUsers"] = true
+	c.Data["PageIsToolChains"] = true
 
 	sources, err := db.LoginSources.List(db.ListLoginSourceOpts{})
 	if err != nil {
