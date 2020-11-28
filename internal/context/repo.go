@@ -120,7 +120,7 @@ func (r *Repository) PullRequestURL(baseBranch, headBranch string) string {
 	return fmt.Sprintf("%s/compare/%s...%s:%s", repoLink, baseBranch, r.Owner.Name, headBranch)
 }
 
-// [0]: issues, [1]: wiki
+// [0]: issues, [1]: wiki, [2]: devops
 func RepoAssignment(pages ...bool) macaron.Handler {
 	return func(c *Context) {
 		var (
@@ -223,6 +223,7 @@ func RepoAssignment(pages ...bool) macaron.Handler {
 
 			c.Repo.Repository.EnableIssues = repo.CanGuestViewIssues()
 			c.Repo.Repository.EnableWiki = repo.CanGuestViewWiki()
+			c.Repo.Repository.EnableDevOps = repo.CanGuestViewDevOps()
 		}
 
 		if repo.IsMirror {

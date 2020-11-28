@@ -142,6 +142,9 @@ func SettingsPost(c *context.Context, f form.RepoSetting) {
 		c.Redirect(repo.Link() + "/settings")
 
 	case "advanced":
+		repo.EnableDevOps = f.EnableDevOps
+		repo.AllowPublicDevOps = f.AllowPublicDevOps
+		repo.EnableExternalDevOps = f.EnableExternalDevOps
 		repo.EnableWiki = f.EnableWiki
 		repo.AllowPublicWiki = f.AllowPublicWiki
 		repo.EnableExternalWiki = f.EnableExternalWiki
@@ -156,6 +159,9 @@ func SettingsPost(c *context.Context, f form.RepoSetting) {
 		repo.PullsIgnoreWhitespace = f.PullsIgnoreWhitespace
 		repo.PullsAllowRebase = f.PullsAllowRebase
 
+		if !repo.EnableDevOps || repo.EnableExternalDevOps {
+			repo.AllowPublicDevOps = false
+		}
 		if !repo.EnableWiki || repo.EnableExternalWiki {
 			repo.AllowPublicWiki = false
 		}

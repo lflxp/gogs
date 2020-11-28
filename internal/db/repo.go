@@ -187,6 +187,8 @@ type Repository struct {
 
 	// Advanced settings
 	EnableDevOps          bool `xorm:"NOT NULL DEFAULT true" gorm:"NOT NULL;DEFAULT:TRUE"`
+	AllowPublicDevOps     bool
+	EnableExternalDevOps  bool
 	EnableWiki            bool `xorm:"NOT NULL DEFAULT true" gorm:"NOT NULL;DEFAULT:TRUE"`
 	AllowPublicWiki       bool
 	EnableExternalWiki    bool
@@ -281,6 +283,10 @@ func (repo *Repository) CanGuestViewWiki() bool {
 
 func (repo *Repository) CanGuestViewIssues() bool {
 	return repo.EnableIssues && !repo.EnableExternalTracker && repo.AllowPublicIssues
+}
+
+func (repo *Repository) CanGuestViewDevOps() bool {
+	return repo.EnableDevOps && !repo.EnableExternalDevOps && repo.AllowPublicDevOps
 }
 
 // MustOwner always returns a valid *User object to avoid conceptually impossible error handling.
@@ -1156,6 +1162,7 @@ func CreateRepository(doer, owner *User, opts CreateRepoOptions) (_ *Repository,
 		EnableWiki:   true,
 		EnableIssues: true,
 		EnablePulls:  true,
+		EnableDevOps: true,
 	}
 
 	sess := x.NewSession()

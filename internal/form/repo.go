@@ -94,6 +94,9 @@ type RepoSetting struct {
 	EnablePrune   bool
 
 	// Advanced settings
+	EnableDevOps          bool
+	AllowPublicDevOps     bool
+	EnableExternalDevOps  bool
 	EnableWiki            bool
 	AllowPublicWiki       bool
 	EnableExternalWiki    bool
