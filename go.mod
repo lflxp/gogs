@@ -3,7 +3,7 @@ module gogs.io/gogs
 go 1.14
 
 require (
-	github.com/Masterminds/semver/v3 v3.1.0
+	github.com/Masterminds/semver/v3 v3.1.1
 	github.com/bgentry/speakeasy v0.1.0 // indirect
 	github.com/editorconfig/editorconfig-core-go/v2 v2.3.7
 	github.com/fatih/color v1.9.0 // indirect
@@ -38,7 +38,7 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/pquerna/otp v1.2.0
 	github.com/prometheus/client_golang v1.8.0
-	github.com/russross/blackfriday v1.5.2
+	github.com/russross/blackfriday v1.6.0
 	github.com/saintfish/chardet v0.0.0-20120816061221-3af4cd4741ca // indirect
 	github.com/satori/go.uuid v1.2.0
 	github.com/sergi/go-diff v1.1.0
@@ -61,9 +61,9 @@ require (
 	gopkg.in/macaron.v1 v1.4.0
 	gorm.io/driver/mysql v1.0.3
 	gorm.io/driver/postgres v1.0.5
-	gorm.io/driver/sqlite v1.1.3
+	gorm.io/driver/sqlite v1.1.4
 	gorm.io/driver/sqlserver v1.0.5
-	gorm.io/gorm v1.20.6
+	gorm.io/gorm v1.20.7
 	unknwon.dev/clog/v2 v2.1.2
 	xorm.io/builder v0.3.6
 	xorm.io/core v0.7.2
